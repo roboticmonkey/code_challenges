@@ -29,16 +29,30 @@ def rect_intersection(rect_1, rect_2):
     
     return overlap
 
-def find_overlap_range(x1, width1, x2, width2):
+def find_overlap_range(x1, lenght1, x2, length2):
+    """ finds the overlap range between 4 points. returns the overlap start point
+            and the length of the overlap 
+
+    >>> find_overlap_range(1, 11, 6, 15)
+    (6, 6)
+
+    >>> find_overlap_range(1, 5, 6, 10)
+
+    >>> find_overlap_range(9, 10, 5, 15)
+    (9, 10)
+
+    """
+
+
     highest_start_point = max(x1, x2)
-    lowest_end_point = min(x1 + width1, x2 + width2)
+    lowest_end_point = min(x1 + lenght1, x2 + length2)
     
     if highest_start_point >= lowest_end_point:
         return None
     
-    overlap_width = lowest_end_point - highest_start_point
+    overlap_length = lowest_end_point - highest_start_point
         
-    return (highest_start_point, overlap_width)
+    return (highest_start_point, overlap_length)
 
 def overlap_list_rect(list_rects):
     """finds the single overlap of a list rectangles
