@@ -6,27 +6,38 @@ def rect_intersection(rect_1, rect_2):
     >>> rect_1 = {'left_x':1, 'bottom_y':1, 'width': 11, 'height':13,}
     >>> rect_2 = {'left_x':6, 'bottom_y':3, 'width':11, 'height':9,}
     >>> rect_intersection(rect_1, rect_2)
-    {'left_x':6, 'bottom_y': 3, 'width':9, 'height':9,}
+    {'width': 6, 'left_x': 6, 'bottom_y': 3, 'height': 9}
+
+    >>> rect_1 = {'left_x':1, 'bottom_y':1, 'width': 4, 'height':13,}
+    >>> rect_2 = {'left_x':6, 'bottom_y':3, 'width':11, 'height':9,}
+    >>> rect_intersection(rect_1, rect_2)
+    {}
+
+    >>> rect_1 = {'left_x':1, 'bottom_y':1, 'width': 5, 'height':13,}
+    >>> rect_2 = {'left_x':6, 'bottom_y':3, 'width':11, 'height':9,}
+    >>> rect_intersection(rect_1, rect_2)
+    {}
+
+    >>> rect_1 = {'left_x':1, 'bottom_y':1, 'width':11, 'height':13,}
+    >>> rect_2 = {'left_x':6, 'bottom_y':3, 'width':5, 'height':9,}
+    >>> rect_intersection(rect_1, rect_2)
+    {'width': 5, 'left_x': 6, 'bottom_y': 3, 'height': 9}
 
     """
     
-    overlap ={
-        'left_x':None, 
-        'bottom_y':None,
-        'width':None,
-        'height':None,
-              }
+    overlap ={}
+
     x_overlap = find_overlap_range(rect_1['left_x'],
                                     rect_1['width'], 
                                     rect_2['left_x'], 
                                     rect_2['width']) 
-    print x_overlap
+    # print x_overlap
     
     y_overlap = find_overlap_range(rect_1['bottom_y'],
                                     rect_1['height'], 
                                     rect_2['bottom_y'], 
                                     rect_2['height'])
-    print y_overlap
+    # print y_overlap
 
     if x_overlap and y_overlap:
         overlap['left_x'] = x_overlap[0]
