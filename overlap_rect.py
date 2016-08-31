@@ -150,31 +150,59 @@ def find_overlap_range_list(points_list):
     return [highest_start_point, lowest_end_point - highest_start_point]
 
 
+def find_overlap_rect_list(rect_list):
+    """ takes a list of rectengles as dictionaries and returns another 
+        list of rectangles of the intersection of pairs of rectangles.
+
+    >>> rect_1 = {'left_x':8, 'bottom_y':1, 'width': 2, 'height':7,}
+    >>> rect_2 = {'left_x':6, 'bottom_y':7, 'width':7, 'height':6,}
+    >>> rect_3 = {'left_x':4, 'bottom_y':5, 'width': 6, 'height':5,}
+    >>> rect_list = [rect_1, rect_2, rect_3]
+    >>> print find_overlap_rect_list(rect_list)
+    [{'width': 2, 'left_x': 8, 'bottom_y': 7, 'height': 1}, {'width': 2, 'left_x': 8, 'bottom_y': 5, 'height': 3}, {'width': 4, 'left_x': 6, 'bottom_y': 7, 'height': 3}]
+
+    >>> rect_1 = {'left_x':8, 'bottom_y':1, 'width': 2, 'height':4,}
+    >>> rect_2 = {'left_x':6, 'bottom_y':7, 'width':7, 'height':6,}
+    >>> rect_3 = {'left_x':4, 'bottom_y':5, 'width': 6, 'height':5,}
+    >>> rect_list = [rect_1, rect_2, rect_3]
+    >>> print find_overlap_rect_list(rect_list)
+    [{'width': 4, 'left_x': 6, 'bottom_y': 7, 'height': 3}]
+
+    >>> rect_1 = {'left_x':8, 'bottom_y':1, 'width': 2, 'height':4,}
+    >>> rect_2 = {'left_x':7, 'bottom_y':7, 'width':7, 'height':6,}
+    >>> rect_3 = {'left_x':4, 'bottom_y':5, 'width': 3, 'height':5,}
+    >>> rect_list = [rect_1, rect_2, rect_3]
+    >>> print find_overlap_rect_list(rect_list)
+    []
+
+        """
 
 
+    overlap_list = []
 
-# rect_1 = {'left_x':1, 'bottom_y':5, 'width': 10, 'height':4,}
-# rect_2 = {'left_x':7, 'bottom_y':8, 'width': 7, 'height':5,}
-# print rect_intersection(rect_1, rect_2)
-# rect_2 = {'left_x':1, 'bottom_y':4, 'width': 10, 'height':7,}
-# rect_1 = {'left_x':7, 'bottom_y':5, 'width': 2, 'height':5,}
-# print rect_intersection(rect_1, rect_2)
-# rect_2 = {'left_x':1, 'bottom_y':1, 'width': 4, 'height':7,}
-# rect_1 = {'left_x':7, 'bottom_y':1, 'width': 3, 'height':4,}
-# print rect_intersection(rect_1, rect_2)
-# rect_2 = {'left_x':1, 'bottom_y':1, 'width': 4, 'height':7,}
-# rect_1 = {'left_x':5, 'bottom_y':1, 'width': 3, 'height':4,}
-# print rect_intersection(rect_1, rect_2)
+    for index, item in enumerate(rect_list):
+        index += 1
 
+        while index < len(rect_list):
+            #check item with next rectangle in the list
+            x_overlap = find_overlap_range(item['left_x'], item['width'], 
+                                            rect_list[index]['left_x'],
+                                            rect_list[index]['width'])
+            
+            y_overlap = find_overlap_range(item['bottom_y'], item['height'], 
+                                            rect_list[index]['bottom_y'],
+                                            rect_list[index]['height'])
 
+            if x_overlap and y_overlap:
+                overlap_list.append({'left_x':x_overlap[0], 
+                                        'bottom_y': y_overlap[0],
+                                        'width': x_overlap[1],
+                                        'height': y_overlap[1]})
 
-# rect_1 = {'left_x':1, 'bottom_y':1, 'width': 11, 'height':13,}
-# rect_2 = {'left_x':17, 'bottom_y':3, 'width':9, 'height':6,}
-# rect_3 = {'left_x':4, 'bottom_y':9, 'width': 12, 'height':12,}
-# rect_4 = {'left_x':9, 'bottom_y':6, 'width': 14, 'height':10,}
-# rect_list = [rect_1, rect_2, rect_3, rect_4]
+            index += 1
 
-# print overlap_list_rect(rect_list)
+    return overlap_list
+
 
 
 if __name__ == "__main__":
