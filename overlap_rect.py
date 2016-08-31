@@ -1,8 +1,15 @@
 """code to find intersecting rectangles"""
 
 def rect_intersection(rect_1, rect_2):
-    """Finds the overlapping rectangle of 2 rectangles as dictionaries"""
-    # write the body of your function here
+    """Finds the overlapping rectangle of 2 rectangles as dictionaries
+
+    >>> rect_1 = {'left_x':1, 'bottom_y':1, 'width': 11, 'height':13,}
+    >>> rect_2 = {'left_x':6, 'bottom_y':3, 'width':11, 'height':9,}
+    >>> rect_intersection(rect_1, rect_2)
+    {'left_x':6, 'bottom_y': 3, 'width':9, 'height':9,}
+
+    """
+    
     overlap ={
         'left_x':None, 
         'bottom_y':None,
