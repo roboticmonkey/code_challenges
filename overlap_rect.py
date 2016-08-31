@@ -1,4 +1,4 @@
-
+"""code to find intersecting rectangles"""
 
 def rect_intersection(rect_1, rect_2):
     """Finds the overlapping rectangle of 2 rectangles as dictionaries"""
@@ -41,7 +41,33 @@ def find_overlap_range(x1, width1, x2, width2):
     return (highest_start_point, overlap_width)
 
 def overlap_list_rect(list_rects):
-    """finds the single overlap of a list rectangles"""
+    """finds the single overlap of a list rectangles
+
+    >>> rect_1 = {'left_x':1, 'bottom_y':1, 'width': 11, 'height':13,}
+    >>> rect_2 = {'left_x':6, 'bottom_y':3, 'width':11, 'height':9,}
+    >>> rect_3 = {'left_x':4, 'bottom_y':9, 'width': 12, 'height':12,}
+    >>> rect_4 = {'left_x':9, 'bottom_y':6, 'width': 14, 'height':10,}
+    >>> rect_list = [rect_1, rect_2, rect_3, rect_4]
+    >>> overlap_list_rect(rect_list)
+    {'width': 3, 'left_x': 9, 'bottom_y': 9, 'height': 3}
+
+    >>> rect_1 = {'left_x':1, 'bottom_y':1, 'width': 2, 'height':13,}
+    >>> rect_2 = {'left_x':6, 'bottom_y':3, 'width':11, 'height':9,}
+    >>> rect_3 = {'left_x':4, 'bottom_y':9, 'width': 12, 'height':12,}
+    >>> rect_4 = {'left_x':9, 'bottom_y':6, 'width': 14, 'height':10,}
+    >>> rect_list = [rect_1, rect_2, rect_3, rect_4]
+    >>> overlap_list_rect(rect_list)
+    {}
+
+    >>> rect_1 = {'left_x':3, 'bottom_y':1, 'width': 2, 'height':4,}
+    >>> rect_2 = {'left_x':6, 'bottom_y':1, 'width':4, 'height':5,}
+    >>> rect_3 = {'left_x':1, 'bottom_y':6, 'width': 5, 'height':4,}
+    >>> rect_list = [rect_1, rect_2, rect_3]
+    >>> overlap_list_rect(rect_list)
+    {}
+
+
+    """
     overlap = {}
     x_points = []
     y_points = []
@@ -94,10 +120,18 @@ def find_overlap_range_list(points_list):
 
 
 
-rect_1 = {'left_x':1, 'bottom_y':1, 'width': 11, 'height':13,}
-rect_2 = {'left_x':6, 'bottom_y':3, 'width':11, 'height':9,}
-rect_3 = {'left_x':4, 'bottom_y':9, 'width': 12, 'height':12,}
-rect_4 = {'left_x':9, 'bottom_y':6, 'width': 14, 'height':10,}
-rect_list = [rect_1, rect_2, rect_3, rect_4]
+# rect_1 = {'left_x':1, 'bottom_y':1, 'width': 11, 'height':13,}
+# rect_2 = {'left_x':17, 'bottom_y':3, 'width':9, 'height':6,}
+# rect_3 = {'left_x':4, 'bottom_y':9, 'width': 12, 'height':12,}
+# rect_4 = {'left_x':9, 'bottom_y':6, 'width': 14, 'height':10,}
+# rect_list = [rect_1, rect_2, rect_3, rect_4]
 
-print overlap_list_rect(rect_list)
+# print overlap_list_rect(rect_list)
+
+
+if __name__ == "__main__":
+    print
+    import doctest
+    if doctest.testmod().failed == 0:
+        print "*** ALL TESTS PASSED ***"
+    print
