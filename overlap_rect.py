@@ -126,13 +126,17 @@ def find_overlap_range_list(points_list):
 
     >>> points_list = [[1,11], [6,11], [4,12], [9,14]]
     >>> find_overlap_range_list(points_list)
-    [9,3]
+    [9, 3]
 
     >>> points_list = [[1,13], [3,9], [9,12], [6,10]]
     >>> find_overlap_range_list(points_list)
-    [9,3]
+    [9, 3]
 
+    >>> points_list = [[1,2], [6,11], [4,12], [9,14]]
+    >>> find_overlap_range_list(points_list)
+    
 
+    """
     highest_start_point = points_list[0][0]
     lowest_end_point = points_list[0][0] + points_list[0][1]
 
