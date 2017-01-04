@@ -23,32 +23,29 @@ def reverse_words(message):
 
     """ reverses the words of a message in place """
 
+    # convert string to list
     message = list(message)
 
+    #reverse list
     message = reverse_letters(message, 0, len(message) -1)
 
+    # keep track of where the words start
     word_start = 0
     
-    for i in xrange(len(message)):
+    for i in xrange(len(message) +1):
 
-        if (message[i] == " "):
-            # print "word_start", word_start
+        # find each word and reverse it again
+        if (i == len(message)) or (message[i] == " "):
             message = reverse_letters(message, word_start, i -1)
             word_start = i + 1
-        elif  i == len(message)-1:
-            
-            message = reverse_letters(message, word_start, i)
-            
-        else:
-            continue
- 
-
+        
+    # convert the list back into a string
     message = "".join(message)
 
+    # return the message
     return message
 
 
 msg = "find you will pain only go you recordings security the into if"
 
-print "from function call: ", reverse_words(msg)
-print "msg var: ", msg 
+print  reverse_words(msg)
