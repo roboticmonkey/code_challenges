@@ -49,3 +49,8 @@ def reverse_words(message):
 msg = "find you will pain only go you recordings security the into if"
 
 print  reverse_words(msg)
+
+msg2 = "tea for time!"
+
+print reverse_words(msg2)
+
