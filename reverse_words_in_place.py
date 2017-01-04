@@ -4,13 +4,19 @@ def reverse_letters(message, start_index, end_index):
     """helper function that reverses letters in a string"""
 
     temp_letter = " "
+    
 
-    for i in xrange(len(letters[start_index: end_index])/2):
-        temp_letter = letters[i]
-        letters[i] = letters[-(i+1)]
-        letters[-(i+1)] = temp_letter
+    while start_index < end_index:
 
-    return letters
+        temp_letter = message[start_index]
+        message[start_index] = message[end_index]
+        message[end_index] = temp_letter
+
+        start_index += 1
+        end_index -= 1
+
+      
+    return message
 
 
 def reverse_words(message):
@@ -23,14 +29,12 @@ def reverse_words(message):
 
     word_start = 0
     
-
     for i in xrange(len(message)):
-        # print i, message[i]
 
-        if message[i] == " ":
-            
-            message = reverse_letters(message, word_start, i)
-            word_start = i +1
+        if (message[i] == " "):
+            # print "word_start", word_start
+            message = reverse_letters(message, word_start, i -1)
+            word_start = i + 1
         elif  i == len(message)-1:
             
             message = reverse_letters(message, word_start, i)
@@ -47,5 +51,4 @@ def reverse_words(message):
 msg = "find you will pain only go you recordings security the into if"
 
 print "from function call: ", reverse_words(msg)
-reverse_words(msg)
 print "msg var: ", msg 
