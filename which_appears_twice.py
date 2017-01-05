@@ -1,9 +1,11 @@
 
 def which_appears_twice(list_of_nums):
 
-    ideal_sum = 0
-    for i in xrange(1, len(list_of_nums)+1):
-        ideal_sum += i
+    # ideal_sum = 0
+    # for i in xrange(1, len(list_of_nums)+1):
+    #     ideal_sum += i
+
+    ideal_sum = (len(list_of_nums)*len(list_of_nums) + len(list_of_nums))/2
 
     lst_sum = 0
 
