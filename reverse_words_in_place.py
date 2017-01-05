@@ -3,12 +3,14 @@ def reverse_letters(message, start_index, end_index):
 
     """helper function that reverses letters in a string"""
 
+    
     temp_letter = " "
     
 
     while start_index < end_index:
 
         temp_letter = message[start_index]
+
         message[start_index] = message[end_index]
         message[end_index] = temp_letter
 
@@ -23,6 +25,8 @@ def reverse_words(message):
 
     """ reverses the words of a message in place """
 
+    
+
     # convert string to list
     message = list(message)
 
@@ -34,8 +38,9 @@ def reverse_words(message):
     
     for i in xrange(len(message) +1):
 
+
         # find each word and reverse it again
-        if (i == len(message)) or (message[i] == " "):
+        if (i == len(message)) or (message[i] == " ") :
             message = reverse_letters(message, word_start, i -1)
             word_start = i + 1
         
